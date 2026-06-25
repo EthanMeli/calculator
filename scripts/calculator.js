@@ -1,22 +1,47 @@
 const numbers = Array.from(document.body.querySelectorAll(".number"));
 const operators = Array.from(document.body.querySelectorAll(".operator"));
 const equals = document.body.querySelector(".equals");
+const clear = document.body.querySelector(".clear");
 
 const equation = document.body.querySelector(".equation");
 const result = document.body.querySelector(".result");
 
 let numA = 0;
-let numB = null;
+let numB = 0;
 let op = null;
+let opDisplay = null;
+
+equals.addEventListener("click", () => {
+  if (op === null) {
+    equation.textContent = `${numA}`;
+  } else {
+    const res = operate(Number(numA), Number(numB), op);
+    equation.textContent = `${numA} ${opDisplay} ${numB} =`;
+    result.textContent = res;
+    if (Number(res) !== "NaN") numA = res;
+    else numA = 0;
+    numB = 0;
+  }
+})
+
+clear.addEventListener("click", () => {
+  numA = 0;
+  numB = 0;
+  op = null;
+  equation.textContent = '0';
+  result.textContent = '0';
+})
 
 for (const number of numbers) {
   number.addEventListener("click", () => {
     if (op === null) {
-      numA = Number(number.textContent);
+      if (numA !== 0) numA += number.textContent;
+      else numA = number.textContent;
       result.textContent = `${numA}`;
     } else {
-      numB = Number(number.textContent);
-      result.textContent = `${numA} ${op} ${numB}`
+      if (numB !== 0) numB += number.textContent;
+      else numB = number.textContent;
+      result.textContent = `${numA} ${opDisplay} ${numB}`
     }
   });
 }
@@ -24,8 +49,9 @@ for (const number of numbers) {
 for (const operator of operators) {
   if (operator.id) {
       operator.addEventListener("click", () => {
-      op = operator.textContent;
-      result.textContent = `${numA} ${op}`;
+      op = operator.id;
+      opDisplay = operator.textContent;
+      result.textContent = `${numA} ${opDisplay}`;
       console.log(op);
     })
   }
@@ -50,14 +76,14 @@ function divide(a, b) {
 
 function operate(a, b, op) {
   switch (op) {
-    case '&plus;':
+    case '+':
       return add(a, b);
-    case '&minus;':
+    case '-':
       return subtract(a, b);
-    case '&times;':
+    case '*':
       return multiply(a, b);
-    case '&divide;':
-      if (b === 0) return "DIV BY 0 ERR";
+    case '/':
+      if (b === 0) return "ERR: DIV BY 0";
       else return divide(a, b);
     default:
       console.log(`Unknown operation: ${op}.`);
