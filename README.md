@@ -9,3 +9,6 @@ The Odin Project's Foundations course. These skills include:
   - HTML
   - CSS
   - JavaScript
+
+## Try it Out
+This project will be hosted through GitHub pages by the time it is completed.
