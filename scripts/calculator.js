@@ -49,10 +49,11 @@ for (const number of numbers) {
 for (const operator of operators) {
   if (operator.id) {
       operator.addEventListener("click", () => {
-      op = operator.id;
-      opDisplay = operator.textContent;
-      result.textContent = `${numA} ${opDisplay}`;
-      console.log(op);
+        if (numB !== 0) equals.click();
+        op = operator.id;
+        opDisplay = operator.textContent;
+        result.textContent = `${numA} ${opDisplay}`;
+        console.log(op);
     })
   }
 }
