@@ -1,0 +1,85 @@
+@import url('https://fonts.cdnfonts.com/css/calculator');
+
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Calculator, Arial, sans-serif;
+}
+
+.calculator {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 600px;
+  height: 800px;
+  background-color: gray;
+  margin: auto;
+}
+
+.display {
+  background-color: lightseagreen;
+  padding: 8px;
+  width: 450px;
+  text-align: right;
+}
+
+.equation {
+  font-size: 24px;
+}
+
+.result {
+  font-size: 48px;
+}
+
+.buttons {
+  display: flex;
+  width: 450px;
+  align-items: center;
+  gap: 8px;
+}
+
+.numbers {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.row-container {
+  display: flex;
+  gap: 8px;
+}
+
+.number {
+  display: flex;
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+  background-color: aliceblue;
+  padding: 50px;
+}
+
+.operators {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.operator {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: chocolate;
+  padding: 50px;
+  flex: 1;
+}
+
+.equals {
+  background-color: blueviolet;
+}
