@@ -73,10 +73,12 @@ clear.addEventListener("click", () => {
 for (const number of numbers) {
   number.addEventListener("click", () => {
     if (op === null) {
+      if (String(numA).includes(".") && number.textContent === ".") return;
       if (numA !== 0) numA += number.textContent;
       else numA = number.textContent;
       result.textContent = `${numA}`;
     } else {
+      if (String(numB).includes(".") && number.textContent === ".") return;
       if (numB !== 0) numB += number.textContent;
       else numB = number.textContent;
       result.textContent = `${numA} ${opDisplay} ${numB}`
