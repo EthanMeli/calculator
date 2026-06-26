@@ -11,4 +11,4 @@ The Odin Project's Foundations course. These skills include:
   - JavaScript
 
 ## Try it Out
-This project will be hosted through GitHub pages by the time it is completed.
+Access here: https://ethanmeli.github.io/calculator/
