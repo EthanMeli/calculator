@@ -22,14 +22,48 @@ equals.addEventListener("click", () => {
     else numA = 0;
     numB = 0;
   }
+  clear.textContent = "AC";
 })
 
+/* 
+  CLEAR BUTTON FUNCTIONALITY
+    - Remove a single character/entry when button is "CE"
+    - Clear everything when button is "AC"
+  These two clearing modes are unique, and should be defined
+  according to standard principles
+*/
 clear.addEventListener("click", () => {
-  numA = 0;
-  numB = 0;
-  op = null;
-  equation.textContent = '0';
-  result.textContent = '0';
+  const resultLength = result.textContent.length;
+  if (clear.textContent === "CE" && resultLength > 1) {
+    // Without removing two characters in some cases, the user will
+    // have to manually remove the space using CE, which is not desired
+    if (result.textContent[resultLength - 2] === " ") {
+      result.textContent = result.textContent.substring(0, resultLength - 2);
+    } else {
+      result.textContent = result.textContent.substring(0, resultLength - 1);
+    }
+    const vals = result.textContent.split(" ");
+    if (vals.length === 3) {
+      numB = vals[2];
+    } else if (vals.length === 2) {
+      numB = 0;
+    } else {
+      numA = vals[0];
+      op = null;
+      opDisplay = null;
+    }
+  } else if (clear.textContent === "AC") {
+    numA = 0;
+    numB = 0;
+    op = null;
+    opDisplay = null;
+    equation.textContent = `Ans = ${result.textContent}`;
+    result.textContent = "0";
+    clear.textContent = "CE";
+  } else {
+    numA = 0;
+    result.textContent = "0";
+  }
 })
 
 for (const number of numbers) {
@@ -43,6 +77,7 @@ for (const number of numbers) {
       else numB = number.textContent;
       result.textContent = `${numA} ${opDisplay} ${numB}`
     }
+    clear.textContent = "CE";
   });
 }
 
@@ -53,7 +88,7 @@ for (const operator of operators) {
         op = operator.id;
         opDisplay = operator.textContent;
         result.textContent = `${numA} ${opDisplay}`;
-        console.log(op);
+        clear.textContent = "CE";
     })
   }
 }
