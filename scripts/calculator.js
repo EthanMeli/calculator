@@ -15,7 +15,11 @@ equals.addEventListener("click", () => {
   if (op === null) {
     equation.textContent = `${numA}`;
   } else {
-    const res = operate(Number(numA), Number(numB), op);
+    let res = operate(Number(numA), Number(numB), op);
+    const floatCheck = String(res).split(".");
+    if (floatCheck[1] && floatCheck[1].length > 10) {
+      res = res.toFixed(10);
+    }
     equation.textContent = `${numA} ${opDisplay} ${numB} =`;
     result.textContent = res;
     if (Number(res) !== "NaN") numA = res;
