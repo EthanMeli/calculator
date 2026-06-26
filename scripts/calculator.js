@@ -22,7 +22,7 @@ equals.addEventListener("click", () => {
     }
     equation.textContent = `${numA} ${opDisplay} ${numB} =`;
     result.textContent = res;
-    if (Number(res) !== "NaN") numA = res;
+    if (Number(res) !== "NaN") numA = Number(res);
     else numA = 0;
     numB = 0;
   }
